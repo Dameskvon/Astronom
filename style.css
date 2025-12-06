@@ -1,0 +1,348 @@
+:root {
+    --primary-color: #0d6efd;
+    --warning-color: #ffc107;
+    --bg-light: #ffffff; 
+    --bg-dark: #121212; 
+    --text-light: #f8f9fa; 
+    --text-dark: #212529; 
+    --section-bg-light: #f8f9fa; 
+    --section-bg-dark: #1c1c1c; 
+    --card-light: #ffffff; 
+    --card-dark: #2c2c2c; 
+    --navbar-scrolled-light: #ffffff; 
+    --navbar-scrolled-dark: #000000; 
+    --navbar-initial-text: var(--text-light); 
+}
+
+body {
+    background-color: var(--bg-dark); /* Default Dark Mode */
+    color: var(--text-light); /* Default Dark Mode */
+    font-family: 'Stack Sans Notch', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.page-section {
+    padding: 5rem 0;
+    transition: background-color 0.3s;
+}
+
+/* Mengatur warna latar belakang section genap (kecuali #planet dan #kirim-foto) */
+.page-section:nth-child(even):not(#planet):not(#kirim-foto) {
+    background-color: var(--section-bg-dark); 
+}
+
+.navbar {
+    background-color: rgba(0, 0, 0, 0) !important;
+    transition: background-color 0.3s, padding 0.3s, box-shadow 0.3s;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    z-index: 1030;
+}
+
+.navbar-brand, .nav-link {
+    color: var(--navbar-initial-text) !important; 
+    transition: color 0.3s;
+}
+#theme-toggle {
+    color: var(--navbar-initial-text);
+    border-color: var(--navbar-initial-text) !important;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.navbar.navbar-scrolled {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+/* DARK MODE - Nav Scrolled */
+body:not(.light-mode) .navbar.navbar-scrolled {
+    background-color: var(--navbar-scrolled-dark) !important;
+}
+body:not(.light-mode) .navbar.navbar-scrolled .navbar-brand,
+body:not(.light-mode) .navbar.navbar-scrolled .nav-link {
+    color: var(--text-light) !important; 
+}
+body:not(.light-mode) .navbar.navbar-scrolled #theme-toggle {
+    color: var(--text-light); 
+    border-color: var(--text-light) !important;
+}
+
+/* LIGHT MODE - Nav Scrolled */
+body.light-mode .navbar.navbar-scrolled {
+    background-color: var(--navbar-scrolled-light) !important;
+}
+body.light-mode .navbar.navbar-scrolled .navbar-brand,
+body.light-mode .navbar.navbar-scrolled .nav-link {
+    color: var(--text-dark) !important; 
+}
+body.light-mode .navbar.navbar-scrolled #theme-toggle {
+    color: var(--text-dark); 
+    border-color: var(--text-dark) !important;
+}
+
+
+.masthead {
+    /* Latar belakang Bimasakti Nyata */
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1510325805092-2951ab8bfad6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTkyOXwwfDF8c2VhcmNofDh8fG1pbGt5JTIwd2F5fGVufDB8fHx8MTY5NjAxMjQwMQ&ixlib=rb-4.0.3&q=80&w=1080') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    padding-top: 12rem; 
+    padding-bottom: calc(10rem - 4.5rem);
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.stars .star {
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+    opacity: 0;
+    animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.5); }
+}
+
+.card {
+    background-color: var(--card-dark) !important; 
+    border: 1px solid #444 !important; 
+    color: var(--text-light); 
+    transition: all 0.3s;
+}
+
+/* Rasi Bintang Card Style (Horizontal) */
+.constellation-card {
+    min-width: 350px; 
+    margin-right: 25px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border-radius: 15px;
+    overflow: hidden;
+    flex-shrink: 0; 
+    cursor: pointer; 
+}
+.constellation-card:hover {
+    transform: translateY(-8px); 
+    box-shadow: 0 1rem 1.5rem rgba(13, 110, 253, 0.7) !important; 
+}
+.constellation-img {
+    height: 220px; 
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+.constellation-card:hover .constellation-img {
+    transform: scale(1.1);
+}
+
+/* Fakta Highlight Card Style */
+.fact-highlight {
+    background-color: var(--card-dark) !important;
+    border-color: var(--primary-color) !important;
+    border-left: 5px solid var(--primary-color) !important; 
+}
+
+.planet-card, .gallery-item {
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.planet-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(255, 193, 7, 0.5) !important; 
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(13, 110, 253, 0.7);
+}
+
+.gallery-item img {
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Modal Styling */
+#planet-modal-content, #gallery-modal-content, #constellation-modal-content {
+    background-color: var(--card-dark); 
+    border-color: #444;
+}
+
+.modal-header .btn-close {
+    filter: invert(0); 
+}
+
+/* Bagian Planet dan Kirim Foto */
+#planet {
+    background-color: var(--section-bg-dark) !important;
+}
+#kirim-foto {
+    background-color: var(--section-bg-light) !important; 
+    color: var(--text-dark); 
+}
+
+.footer {
+    background-color: var(--bg-dark) !important; 
+    color: var(--text-light) !important; 
+    padding: 1.5rem 0;
+    text-align: center; 
+    border-top: 1px solid #333;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* LIGHT MODE STYLES */
+body.light-mode {
+    background-color: var(--bg-light); 
+    color: var(--text-dark); 
+}
+body.light-mode .page-section:nth-child(even):not(#planet):not(#kirim-foto) {
+    background-color: var(--section-bg-light); 
+}
+body.light-mode .card {
+    background-color: var(--card-light) !important;
+    border-color: #dee2e6 !important; 
+    color: var(--text-dark);
+}
+body.light-mode .fact-highlight {
+    background-color: var(--card-light) !important;
+    border-color: var(--primary-color) !important;
+    border-left: 5px solid var(--primary-color) !important; 
+}
+body.light-mode #planet-modal-content, body.light-mode #gallery-modal-content, body.light-mode #constellation-modal-content {
+    background-color: var(--card-light);
+    border-color: #dee2e6;
+}
+body.light-mode #planet {
+    background-color: var(--section-bg-light) !important;
+    color: var(--text-dark) !important;
+}
+body.light-mode #planet h2, body.light-mode #planet h3 {
+    color: var(--text-dark) !important;
+}
+body.light-mode #planet .card {
+    background-color: var(--card-light) !important;
+    color: var(--text-dark) !important;
+}
+
+body.light-mode #kirim-foto {
+    background-color: var(--bg-light) !important; 
+    color: var(--text-dark) !important; 
+}
+body.light-mode .footer {
+    background-color: var(--bg-light) !important; 
+    color: var(--text-dark) !important;
+}
+
+/* FIX WARNA TEKS DI DARK MODE */
+body:not(.light-mode) .text-primary {
+    color: #4da3ff !important;
+}
+body:not(.light-mode) .text-warning {
+    color: #ffd659 !important;
+}
+body:not(.light-mode) .text-muted {
+    color: #cfcfcf !important;
+}
+body:not(.light-mode) .card-title {
+    color: #e9f1ff !important;
+}
+body:not(.light-mode) .lead {
+    color: #e7e7e7 !important;
+}
+body:not(.light-mode) .modal-body,
+body:not(.light-mode) .modal-title {
+    color: #f1f1f1 !important;
+}
+
+/* =========================================
+   SCROLL BUTTON & NO SCROLLBAR STYLES (NEW)
+   ========================================= */
+
+/* Menyembunyikan Scrollbar */
+.no-scrollbar {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+/* Wrapper Navigasi */
+.container-scroll-wrapper {
+    position: relative;
+    padding: 0 10px;
+}
+
+/* Tombol Scroll */
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5); 
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255,255,255,0.2);
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.scroll-btn:hover {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1); 
+    box-shadow: 0 0 20px var(--primary-color); 
+}
+
+.scroll-left {
+    left: -20px; /* Posisi di sisi kiri luar */
+}
+
+.scroll-right {
+    right: -20px; /* Posisi di sisi kanan luar */
+}
+
+/* Responsif: Sembunyikan tombol di mobile (gunakan swipe) */
+@media (max-width: 768px) {
+    .scroll-btn {
+        display: none !important; 
+    }
+}
