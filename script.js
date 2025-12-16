@@ -10,12 +10,12 @@ const constellations = [
     { id: 'scorpius', name: 'Scorpius', latin: 'Kalajengking', image: 'img/scorpio.jpg', desc: 'Rasi bintang zodiak yang mencolok, terletak di dekat pusat Bimasakti. Ditandai oleh bintang raksasa merah Antares. Area ini sangat kaya akan nebula dan gugus bintang.' },
     { id: 'cassiopeia', name: 'Cassiopeia', latin: 'Ratu yang Bersemayam', image: 'img/cassiopeia.jpg', desc: 'Terlihat di langit utara, berbentuk huruf "W" atau "M" yang khas. Karena terletak di bidang Bimasakti, rasi ini kaya akan gugus bintang terbuka dan nebula, seperti Nebula Hati dan Jiwa.' },
     { id: 'leo', name: 'Leo', latin: 'Singa', image: 'img/leo.jpg', desc: 'Rasi bintang zodiak yang dominan di musim semi. Ditandai oleh bintang terang Regulus dan Sikat. Di area ini juga terlihat hujan meteor Leonids setiap bulan November.' },
-    { id: 'taurus', name: 'Taurus', latin: 'Banteng', image: 'img/taurus.jpg', desc: 'Rasi bintang zodiak yang besar. Mengandung gugus bintang Pleiades (Bintang Tujuh) dan Hyades. Dikenal dengan bintang raksasa merah Aldebaran yang membentuk mata banteng.' },
+    { id: 'taurus', name: 'Taurus', image: 'img/taurus.jpg', desc: 'Rasi bintang zodiak yang besar. Mengandung gugus bintang Pleiades (Bintang Tujuh) dan Hyades. Dikenal dengan bintang raksasa merah Aldebaran yang membentuk mata banteng.' },
     { id: 'andromeda', name: 'Andromeda', latin: 'Gadis yang Dirantai', image: 'img/Andromeda.jpg', desc: 'Terkenal karena Galaksi Andromeda (M31), galaksi spiral besar terdekat dengan Bimasakti. M31 dapat dilihat dengan mata telanjang di langit gelap, merupakan objek terjauh yang bisa dilihat manusia.' },
     { id: 'cygnus', name: 'Cygnus', latin: 'Angsa', image: 'img/cygnus.jpg', desc: 'Rasi bintang yang melintasi jalur Bimasakti. Memiliki asterisma Salib Utara dan mengandung bintang Deneb, salah satu bintang paling terang.' },
     { id: 'sagittarius', name: 'Sagittarius', latin: 'Pemanah', image: 'img/sagittarius.jpg', desc: 'Rasi bintang zodiak tempat Pusat Galaksi Bimasakti (Sagitarius A*) berada. Bagian ini sangat padat dengan nebula dan gugus bintang, menjadikannya target utama astrofotografi.' },
     { id: 'canismajor', name: 'Canis Major', latin: 'Anjing Besar', image: 'img/canismajor.jpg', desc: 'Mengandung Sirius, bintang paling terang di langit malam. Terlihat paling baik selama musim dingin di Belahan Bumi Utara, Sirius adalah bintang yang sangat mudah dikenali.' },
-    { id: 'gemini', name: 'Gemini', latin: 'Kembar', image: 'img/Gemini.png', desc: 'Rasi bintang zodiak yang ditandai oleh dua bintang terang, Castor dan Pollux. Merupakan sumber hujan meteor Geminids tahunan, salah satu hujan meteor paling aktif.' },
+    { id: 'gemini', name: 'Gemini', image: 'img/Gemini.png', desc: 'Rasi bintang zodiak yang ditandai oleh dua bintang terang, Castor dan Pollux. Merupakan sumber hujan meteor Geminids tahunan, salah satu hujan meteor paling aktif.' },
     { id: 'aquarius', name: 'Aquarius', latin: 'Pembawa Air', image: 'img/aquarius.jpg', desc: 'Rasi bintang zodiak besar yang terletak di daerah langit yang kadang disebut "Laut," karena banyak rasi bintang bertema air di sekitarnya. Terlihat jelas di langit musim gugur.' },
     { id: 'pegasus', name: 'Pegasus', latin: 'Kuda Bersayap', image: 'img/pegasus.jpg', desc: 'Terkenal dengan "Persegi Besar Pegasus," formasi bintang yang membantu menemukan rasi bintang lain di sekitarnya, seperti Andromeda. Rasi bintang yang menonjol di musim gugur.' },
 ];
@@ -281,22 +281,6 @@ function handleScrollAnimation() {
     });
 }
 
-function handleContactSubmit(event) {
-    event.preventDefault(); 
-    const submitMessage = document.getElementById('submitMessage');
-    const contactForm = document.getElementById('contactForm');
-    
-    // Tampilkan pesan sukses (simulasi)
-    submitMessage.classList.remove('d-none');
-    
-    // Reset formulir
-    contactForm.reset();
-    
-    // Sembunyikan pesan setelah 5 detik
-    setTimeout(() => {
-        submitMessage.classList.add('d-none');
-    }, 5000);
-}
 
 // --- LOGIKA SCROLL BUTTON BARU ---
 function setupScrollButtons() {
@@ -358,6 +342,84 @@ function setupScrollButtons() {
     }
 }
 
+// =======================================================
+// KODE GOOGLE FORM SUBMISSION YANG BENAR
+// =======================================================
+
+// URL SUBMISSION (HARUS BERAKHIR DI /formResponse)
+const GOOGLE_FORM_SUBMIT_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScQEkHtSQ6rqVPlCvtCjUXqfhKRtWWnOLGnzu3eEFIZ7m-H6A/formResponse';
+
+// Entry ID dari Google Form Anda (ID 1303342756 untuk Nama sudah Dikonfirmasi)
+const ENTRY_ID = {
+    name: 'entry.1303342756',
+    email: 'entry.235008940',
+    object: 'entry.1177955609',
+    desc: 'entry.207604776',
+    link: 'entry.492427878' 
+};
+
+function handleContactSubmit(event) {
+    event.preventDefault(); // Mencegah form submit default (reload halaman)
+
+    const form = document.getElementById('contactForm');
+    const submitButton = document.getElementById('submitButton');
+    const submitMessage = document.getElementById('submitMessage');
+    const loadingMessage = document.getElementById('loadingMessage');
+    
+    // 1. Kumpulkan Nilai dari Field (menggunakan atribut 'name' di HTML)
+    const nameValue = form.querySelector('[name="Nama_Fotografer"]').value;
+    const emailValue = form.querySelector('[name="Email_Pengirim"]').value;
+    const objectValue = form.querySelector('[name="Objek_Difoto"]').value;
+    const descValue = form.querySelector('[name="Deskripsi_Alat"]').value;
+    const linkValue = form.querySelector('[name="Link_Foto"]').value;
+    
+    // Tampilkan pesan loading dan nonaktifkan tombol
+    submitMessage.classList.add('d-none');
+    loadingMessage.classList.remove('d-none');
+    submitButton.disabled = true;
+
+    // 2. Bangun data formulir (payload) untuk dikirim
+    const formData = new URLSearchParams();
+    formData.append(ENTRY_ID.name, nameValue);
+    formData.append(ENTRY_ID.email, emailValue);
+    formData.append(ENTRY_ID.object, objectValue);
+    formData.append(ENTRY_ID.desc, descValue);
+    formData.append(ENTRY_ID.link, linkValue);
+
+    // 3. Kirim Data menggunakan Fetch API
+    // Mode 'no-cors' harus digunakan agar browser mengizinkan pengiriman lintas-domain ini, 
+    // meskipun itu berarti kita tidak akan menerima status sukses yang sebenarnya dari Google.
+    fetch(GOOGLE_FORM_SUBMIT_URL, {
+        method: 'POST',
+        mode: 'no-cors', 
+        body: formData,
+    })
+    .then(() => {
+        // --- SUKSES ---
+        // Kita berasumsi sukses karena 'no-cors' tidak akan memicu error kecuali jika ada masalah jaringan.
+        loadingMessage.classList.add('d-none');
+        submitMessage.classList.remove('d-none');
+        
+        // Reset formulir setelah pengiriman sukses
+        form.reset();
+        
+        // Sembunyikan pesan sukses setelah 5 detik
+        setTimeout(() => {
+            submitMessage.classList.add('d-none');
+            submitButton.disabled = false;
+        }, 5000);
+    })
+    .catch(error => {
+        // --- GAGAL (Hanya error jaringan) ---
+        loadingMessage.classList.add('d-none');
+        // Tampilkan pesan error jika pengiriman gagal
+        alert('Gagal mengirim kontribusi. Silakan coba lagi. Error: ' + error);
+        submitButton.disabled = false;
+    });
+}
+// =======================================================
+
+
 document.addEventListener('DOMContentLoaded', function() {
     loadTheme(); 
     
@@ -387,7 +449,10 @@ document.addEventListener('DOMContentLoaded', function() {
     themeToggle.addEventListener('click', toggleTheme);
     
     const contactForm = document.getElementById('contactForm');
-    contactForm.addEventListener('submit', handleContactSubmit); 
+    // PASTIKAN LISTENER MENGGUNAKAN FUNGSI YANG BARU
+    if (contactForm) {
+        contactForm.addEventListener('submit', handleContactSubmit); 
+    }
     
     window.addEventListener('scroll', handleNavbarScroll);
 });
