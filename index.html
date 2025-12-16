@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronom - Observasi Galaksi Nyata</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Stack+Sans+Notch:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-mode">
+
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Astronom</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#beranda">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#konstelasi">Rasi Bintang</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#planet">Tata Surya</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#galeri">Galeri Foto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#kirim-foto">Kontribusi</a></li>
+                </ul>
+                
+                <button class="btn btn-sm btn-outline-warning ms-lg-3" id="theme-toggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="masthead text-white text-center d-flex align-items-center" id="beranda">
+        <div class="stars" id="animated-stars"></div>
+        <div class="container position-relative">
+            <h1 class="display-1 fw-bolder mb-3 fade-in">Jendela Kosmik</h1>
+            <p class="lead mb-5 fade-in">Mengamati keindahan dan misteri luar angkasa.</p>
+            <a class="btn btn-primary btn-xl fade-in" href="#konstelasi">Mulai Observasi</a>
+        </div>
+    </header>
+
+    <section class="page-section" id="konstelasi">
+        <div class="container">
+            <h2 class="text-center mb-5 display-5 fw-bold fade-in">Rasi Bintang</h2>
+            
+            <div class="row justify-content-center mb-5 fade-in">
+                <div class="col-lg-8">
+                    <p class="lead text-center constellation-intro-text">
+                        Secara historis, Rasi Bintang (Constellation) adalah sekelompok bintang yang terlihat membentuk pola atau gambar di langit malam. Pola-pola ini digunakan oleh para pelaut dan penjelajah sebagai panduan navigasi. 
+                        Secara resmi, International Astronomical Union (IAU) membagi langit menjadi 88 Rasi Bintang yang telah diakui dan memiliki batas yang pasti, mencakup seluruh bidang langit.
+                    </p>
+                </div>
+            </div>
+
+            <div class="position-relative container-scroll-wrapper fade-in">
+                <button class="btn btn-primary scroll-btn scroll-left" id="scrollLeftBtn" aria-label="Scroll Kiri">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <div class="d-flex flex-row flex-nowrap overflow-auto pb-3 no-scrollbar" id="constellation-container">
+                    </div>
+
+                <button class="btn btn-primary scroll-btn scroll-right" id="scrollRightBtn" aria-label="Scroll Kanan">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="mt-5 pt-5 fade-in" id="galaxy-facts-container">
+                <h3 class="text-center mb-4 text-primary fw-bold">Fakta Utama Galaksi Kita (Bimasakti)</h3>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="page-section bg-dark text-white" id="planet">
+        <div class="container">
+            <h2 class="text-center mb-5 display-5 fw-bold text-warning fade-in">Tata Surya Kita</h2>
+            
+            <div class="row justify-content-center mb-5 fade-in">
+                <div class="col-lg-8">
+                    <p class="lead text-center planet-intro-text">
+                        Apa itu planet? Kata ini berasal dari bahasa Yunani kuno planēt yang berarti "pengembara". Definisi yang lebih modern disepakati pada tahun 2006 oleh International Astronomical Union (IAU). 
+                        IAU mendefinisikan planet sebagai benda langit yang mengorbit Matahari, memiliki massa yang cukup untuk memiliki bentuk hampir bulat, dan telah membersihkan lingkungan orbitnya. 
+                        Tata Surya kita memiliki delapan planet resmi yaitu Merkurius, Venus, Bumi, Mars, Jupiter, Saturnus, Uranus, dan Neptunus.
+                    </p>
+                </div>
+            </div>
+            <div class="row text-center" id="planet-container">
+            </div>
+            
+            <div class="mt-5 pt-5 fade-in" id="solar-system-facts-container">
+                <h3 class="text-center mb-4 text-warning fw-bold">Statistik Kunci Tata Surya</h3>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="page-section" id="galeri">
+        <div class="container">
+            <h2 class="text-center mb-5 display-5 fw-bold fade-in">Galeri Tangkapan Terbaik</h2>
+            <div class="row" id="gallery-grid">
+            </div>
+        </div>
+    </section>
+    
+    <section class="page-section bg-light" id="kirim-foto">
+        <div class="container">
+            <h2 class="text-center mb-5 display-5 fw-bold fade-in">Kirimkan Tangkapan Galaksi Terbaik Anda!</h2>
+            
+            <form id="contactForm">
+                <div class="row align-items-stretch mb-5 fade-in">
+                    <div class="col-md-6">
+                        <div class="form-group mb-4">
+                            <input class="form-control" name="Nama_Fotografer" type="text" placeholder="Nama Fotografer *" required>
+                        </div>
+                        <div class="form-group mb-4">
+                            <input class="form-control" name="Email_Pengirim" type="email" placeholder="Email Anda *" required>
+                        </div>
+                        <div class="form-group mb-4">
+                            <input class="form-control" name="Objek_Difoto" type="text" placeholder="Objek yang Difoto (Contoh: M42, M31) *" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                         <div class="form-group mb-4">
+                            <textarea class="form-control" name="Deskripsi_Alat" placeholder="Deskripsi Singkat Foto / Alat yang Digunakan (Teleskop, Kamera) *" required></textarea>
+                        </div>
+                        <div class="form-group form-group-textarea mb-md-0">
+                            <label for="photoLink" class="form-label text-muted d-block text-start">Link Foto Anda (Google Drive/Dropbox) *</label>
+                            <input class="form-control" id="photoLink" name="Link_Foto" type="url" placeholder="https://drive.google.com/link-foto-anda" required>
+                            <small class="text-muted d-block text-start mt-1">Pastikan link dapat diakses publik/viewer.</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center fade-in">
+                    <button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Unggah Kontribusi</button>
+                </div>
+                
+                <div class="mt-3 text-center alert alert-info d-none fade-in" id="loadingMessage">
+                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                    Mengirim data...
+                </div>
+                <div class="mt-3 text-center alert alert-success d-none fade-in" id="submitMessage">Kontribusi Anda berhasil dikirim ke tim peninjau. Terima kasih!</div>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer py-4" id="mainFooter">
+        <div class="container text-center">
+            <p class="mb-0">AstroVerse &copy; 2025. Eksplorasi Bimasakti Nyata.</p>
+        </div>
+    </footer>
+    
+    <div class="modal fade" id="planetDetailModal" tabindex="-1" aria-labelledby="planetDetailModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content" id="planet-modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="planetDetailModalLabel">Detail Planet</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div id="modal-content-area"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal fade" id="constellationModal" tabindex="-1" aria-labelledby="constellationModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content" id="constellation-modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="constellationModalLabel">Facts Rasi Bintang</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div id="constellation-modal-body"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content" id="gallery-modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="galleryModalLabel">Detail Foto Galaksi</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div id="gallery-modal-body" class="text-center">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
